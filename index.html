@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spesial Edition</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  background:
+    radial-gradient(ellipse at top, #3a1024 0%, #190b16 48%, #100b12 100%);
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 20px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #ffb14a;
+  font-size: 22px;
+  font-weight: 900;
+}
+
+.logo {
+  display: grid;
+  place-items: center;
+  width: 45px;
+  height: 45px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #ff3a89, #ffcc39, #28e3b0);
+  color: #24101b;
+  font-size: 25px;
+}
+
+.live-status {
+  padding: 10px 14px;
+  border: 1px solid #633044;
+  border-radius: 30px;
+  font-size: 11px;
+  letter-spacing: 2px;
+}
+
+.live-status::before {
+  content: "● ";
+  color: #ff356d;
+}
+
+.container {
+  max-width: 850px;
+  margin: auto;
+  padding: 18px 20px 40px;
+}
+
+.tagline {
+  margin: 32px 0 48px;
+  text-align: center;
+  color: #55e9c1;
+  font-size: 13px;
+  letter-spacing: 4px;
+}
+
+.feature {
+  position: relative;
+  padding: 20px;
+  min-height: 330px;
+  border: 3px solid transparent;
+  border-radius: 36px;
+  background:
+    linear-gradient(135deg, #542033, #e6a14d, #291522) padding-box,
+    linear-gradient(120deg, #52f4bd, #a85aff, #ff4da7) border-box;
+  overflow: hidden;
+}
+
+.feature::before,
+.poster::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0 4px,
+    rgba(0,0,0,.15) 5px 6px
+  );
+}
+
+.feature-top,
+.feature-bottom {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.badge {
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: #ff326b;
+  font-size: 12px;
+  letter-spacing: 2px;
+}
+
+.hd {
+  padding: 12px 16px;
+  border: 1px solid #e6bd77;
+  border-radius: 12px;
+  color: #ffdc91;
+  font-size: 12px;
+  letter-spacing: 2px;
+}
+
+.big-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100px;
+  height: 100px;
+  border: 2px solid rgba(255,255,255,.4);
+  border-radius: 50%;
+  background: rgba(255,255,255,.22);
+  color: white;
+  font-size: 38px;
+  cursor: pointer;
+}
+
+.feature-bottom {
+  position: absolute;
+  bottom: 20px;
+  left: 24px;
+  right: 24px;
+  color: #ffe16d;
+  font-size: 14px;
+  letter-spacing: 2px;
+}
+
+.progress {
+  position: absolute;
+  bottom: 12px;
+  left: 24px;
+  right: 24px;
+  height: 7px;
+  border-radius: 10px;
+  background: #4b3b3e;
+}
+
+.progress span {
+  display: block;
+  width: 12%;
+  height: 100%;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #ff3b76, #ffca39, #42e9b0);
+}
+
+.categories {
+  display: flex;
+  justify-content: space-around;
+  gap: 16px;
+  margin: 48px 0 60px;
+  padding: 18px 0;
+  border-top: 1px solid #39202c;
+  border-bottom: 1px solid #39202c;
+  color: #c7b7c0;
+  font-size: 12px;
+  letter-spacing: 2px;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.categories span:nth-child(2) { color: #31c6e7; }
+.categories span:nth-child(3) { color: #9564ff; }
+.categories span:nth-child(4) { color: #df55d7; }
+
+h2 {
+  margin-bottom: 30px;
+  color: #ffb04a;
+  font-size: 30px;
+}
+
+.channels {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px 18px;
+}
+
+.channel {
+  min-width: 0;
+  cursor: pointer;
+}
+
+.poster {
+  position: relative;
+  display: grid;
+  place-items: center;
+  height: 180px;
+  overflow: hidden;
+  border: 2px solid #ff4d91;
+  border-radius: 22px;
+  background: linear-gradient(135deg, #ff3479, #ffb64b);
+}
+
+.channel:nth-child(2) .poster { background: linear-gradient(135deg, #ffdf69, #b78b25); border-color: #ffe26c; }
+.channel:nth-child(3) .poster { background: linear-gradient(135deg, #30e6a5, #b4f66c); border-color: #61f6ae; }
+.channel:nth-child(4) .poster { background: linear-gradient(135deg, #00b8e9, #54f0d0); border-color: #4cebd9; }
+.channel:nth-child(5) .poster { background: linear-gradient(135deg, #b45cff, #ff5cbd); }
+.channel:nth-child(6) .poster { background: linear-gradient(135deg, #ff8744, #ff3f70); }
+.channel:nth-child(7) .poster { background: linear-gradient(135deg, #ff4b8c, #853cff); }
+.channel:nth-child(8) .poster { background: linear-gradient(135deg, #1daaff, #15d9b6); }
+
+.ch-number,
+.live-label {
+  position: absolute;
+  top: 12px;
+  z-index: 1;
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-size: 11px;
+  letter-spacing: 2px;
+}
+
+.ch-number { left: 12px; background: #ffcd38; color: #27121a; }
+.live-label { right: 12px; background: #ff326b; color: white; }
+
+.play {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 72px;
+  height: 72px;
+  border: 0;
+  border-radius: 50%;
+  background: #ff326b;
+  color: white;
+  font-size: 27px;
+  cursor: pointer;
+}
+
+.channel:nth-child(2) .play { background: #8a6d1e; }
+.channel:nth-child(3) .play { background: #18885e; }
+.channel:nth-child(4) .play { background: #176b83; }
+
+.channel-info {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 14px;
+  font-size: 14px;
+}
+
+.channel-name { color: #ff5b91; font-weight: bold; }
+.channel:nth-child(2) .channel-name { color: #ffb64b; }
+.viewer { color: #c6b8c1; }
+
+.player {
+  width: 100%;
+  margin-top: 30px;
+  border-radius: 14px;
+  background: #000;
+}
+
+@media (max-width: 420px) {
+  .brand { font-size: 18px; }
+  .live-status { font-size: 9px; }
+  .poster { height: 145px; }
+  .container { padding-left: 16px; padding-right: 16px; }
+}
+</style>
+</head>
+
+<body>
+<header>
+  <div class="brand">
+    <div class="logo">▶</div>
+    SPESIAL EDITION
+  </div>
+  <div class="live-status">SEDANG TAYANG</div>
+</header>
+
+<main class="container">
+  <div class="tagline">STREAMING 24 JAM · 8 SALURAN</div>
+
+  <section class="feature">
+    <div class="feature-top">
+      <span class="badge">● LIVE</span>
+      <span class="hd">FULL HD</span>
+    </div>
+
+    <button class="big-play" onclick="playChannel(0)">▶</button>
+
+    <div class="feature-bottom">
+      <span id="featureName">CH 01 · 12.4K nonton</span>
+    </div>
+    <div class="progress"><span></span></div>
+  </section>
+
+  <div class="categories">
+    <span>LAHRAGA</span>
+    <span>● DRAMA</span>
+    <span>● ANIME</span>
+    <span>● DOKUMENTER</span>
+  </div>
+
+  <h2>Semua Saluran</h2>
+  <section class="channels" id="channels"></section>
+
+  <video id="player" class="player" controls playsinline></video>
+</main>
+
+<script>
+const channelData = [
+  { name: "Saluran Utama", viewers: "12.4K", video: "pa1.mp4", ad: "https://arwf.org/4/d566a5b59c764899cc8a30bc6a8cf69e" },
+  { name: "Film Pilihan",   viewers: "8.1K",  video: "pa2.mp4", ad: "https://arwf.org/4/d566a5b59c764899cc8a30bc6a8cf69e" },
+  { name: "Channel 03",    viewers: "6.8K",  video: "pa3.mp4", ad: "https://arwf.org/4/d566a5b59c764899cc8a30bc6a8cf69e" },
+  { name: "Channel 04",    viewers: "5.2K",  video: "pa4.mp4", ad: "https://arwf.org/4/d566a5b59c764899cc8a30bc6a8cf69e" },
+  { name: "Channel 05",    viewers: "4.9K",  video: "pa5.mp4", ad: "https://arwf.org/4/d566a5b59c764899cc8a30bc6a8cf69e" },
+  { name: "Channel 06",    viewers: "3.7K",  video: "pa6.mp4", ad: "https://arwf.org/4/d566a5b59c764899cc8a30bc6a8cf69e" },
+  { name: "Channel 07",    viewers: "2.5K",  video: "pa7.mp4", ad: "https://arwf.org/4/d566a5b59c764899cc8a30bc6a8cf69e" },
+  { name: "Channel 08",    viewers: "1.9K",  video: "pa8.mp4", ad: "https://arwf.org/4/d566a5b59c764899cc8a30bc6a8cf69e" }
+];
+
+const list = document.getElementById("channels");
+const player = document.getElementById("player");
+
+channelData.forEach((channel, index) => {
+  const card = document.createElement("div");
+  card.className = "channel";
+  card.innerHTML = `
+    <div class="poster">
+      <span class="ch-number">CH ${String(index + 1).padStart(2, "0")}</span>
+      <span class="live-label">LIVE</span>
+      <button class="play" aria-label="Putar ${channel.name}">▶</button>
+    </div>
+    <div class="channel-info">
+      <span class="channel-name">${channel.name}</span>
+      <span class="viewer">${channel.viewers}</span>
+    </div>
+  `;
+  card.addEventListener("click", () => playChannel(index));
+  list.appendChild(card);
+});
+
+function playChannel(index) {
+  const channel = channelData[index];
+
+  document.getElementById("featureName").textContent =
+    `CH ${String(index + 1).padStart(2, "0")} · ${channel.viewers} nonton`;
+
+  if (channel.ad) {
+    window.open(channel.ad, "_blank", "noopener,noreferrer");
+  }
+
+  player.src = channel.video;
+  player.load();
+  player.play().catch(() => {
+    // Jika pemutaran otomatis ditolak, tekan tombol Play pada pemutar.
+  });
+
+  player.scrollIntoView({ behavior: "smooth", block: "center" });
+}
+</script>
+</body>
+</html>
